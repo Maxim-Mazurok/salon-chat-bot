@@ -4,11 +4,13 @@
   "description": "Facebook Messenger bot for the Beauty Salon / Hair Salon Industry.",
   "main": "index.js",
   "dependencies": {
-    "botpress": "^0.2.3"
+    "botpress": "^0.2.3",
+    "botpress-messenger": "^2.0.17"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm test"
+    "start": "botpress start",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
