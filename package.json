@@ -1,0 +1,23 @@
+{
+  "name": "salon-chat-bot",
+  "version": "0.0.1",
+  "description": "Facebook Messenger bot for the Beauty Salon / Hair Salon Industry.",
+  "main": "index.js",
+  "dependencies": {
+    "botpress": "^0.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maxim-Mazurok/salon-chat-bot.git"
+  },
+  "author": "Maxim Mazurok",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Maxim-Mazurok/salon-chat-bot/issues"
+  },
+  "homepage": "https://github.com/Maxim-Mazurok/salon-chat-bot#readme"
+}
