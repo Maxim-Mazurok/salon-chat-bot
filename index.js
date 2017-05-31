@@ -196,9 +196,41 @@ module.exports = function (bp) {
     }, (event, next) => {
         const txt = txt => bp.messenger.createText(event.user.id, txt);
         bp.convo.start(event, convo => {
+            convo.messageTypes = ['message', 'text', 'quick_reply'];
             convo.threads['default'].addMessage(txt('Hello! Welcome to our Salon, ' + event.user.first_name));
-            convo.threads['default'].addQuestion(txt('What service you want to book? (color/haircuts/perms/smoothing/styling)'), [
-                {
+            convo.threads['default'].addQuestion(
+                bp.messenger.createText(
+                    event.user.id,
+                    'What service you want to book?',
+                    {
+                        "quick_replies": [
+                            {
+                                "content_type": "text",
+                                "title": "Color",
+                                "payload": "COLOR",
+                                "image_url": "https://images-static.herokuapp.com/icons/color.svg"
+                            },
+                            {
+                                "content_type": "text",
+                                "title": "Haircuts",
+                                "payload": "HAIRCUTS",
+                                "image_url": "https://images-static.herokuapp.com/icons/haircut.svg"
+                            },
+                            {
+                                "content_type": "text",
+                                "title": "Perms & Smoothing",
+                                "payload": "PERMS_SMOOTHING",
+                                "image_url": "https://images-static.herokuapp.com/icons/perms_smoothing.svg"
+                            },
+                            {
+                                "content_type": "text",
+                                "title": "Styling",
+                                "payload": "STYLING",
+                                "image_url": "https://images-static.herokuapp.com/icons/styling.svg"
+                            }
+                        ]
+                    }
+                ), [{
                     default: true,
                     callback: (event) => {
                         let tokens = tokenizer.tokenize(event.text);
@@ -220,8 +252,8 @@ module.exports = function (bp) {
                             convo.repeat()
                         }
                     }
-                }
-            ]);
+                }]
+            );
 
             convo.createThread('datetime');
             convo.threads['datetime'].addQuestion(txt('When you want to book it? (DD/MM HH:mm)'), [
