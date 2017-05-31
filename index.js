@@ -196,38 +196,60 @@ module.exports = function (bp) {
     }, (event, next) => {
         const txt = txt => bp.messenger.createText(event.user.id, txt);
         bp.convo.start(event, convo => {
-            convo.messageTypes = ['message', 'text', 'quick_reply'];
+            convo.messageTypes = ['message', 'text', 'postback'];
             convo.threads['default'].addMessage(txt('Hello! Welcome to our Salon, ' + event.user.first_name));
             convo.threads['default'].addQuestion(
-                bp.messenger.createText(
+                bp.messenger.createTemplate(
                     event.user.id,
-                    'What service you want to book?',
                     {
-                        "quick_replies": [
+                        template_type: 'generic',
+                        image_aspect_ratio: 'square',
+                        elements: [
                             {
-                                "content_type": "text",
-                                "title": "Color",
-                                "payload": "COLOR",
-                                "image_url": "https://images-static.herokuapp.com/icons/color.svg"
+                                title: "Color",
+                                image_url: "https://images-static.herokuapp.com/icons/png/color.png",
+                                subtitle: "We\'ve got the right color for everyone.",
+                                buttons: [
+                                    {
+                                        type: "postback",
+                                        title: "Select",
+                                        payload: "COLOR"
+                                    }
+                                ]
+                            }, {
+                                title: "Haircuts",
+                                image_url: "https://images-static.herokuapp.com/icons/png/haircuts.png?1",
+                                subtitle: "Great haircuts from best barbers.",
+                                buttons: [
+                                    {
+                                        type: "postback",
+                                        title: "Select",
+                                        payload: "HAIRCUTS"
+                                    }
+                                ]
+                            }, {
+                                title: "Perms & Smoothing",
+                                image_url: "https://images-static.herokuapp.com/icons/png/perms_smoothing.png",
+                                subtitle: "Your hair will thank you.",
+                                buttons: [
+                                    {
+                                        type: "postback",
+                                        title: "Select",
+                                        payload: "PERMS_SMOOTHING"
+                                    }
+                                ]
+                            }, {
+                                title: "Styling",
+                                image_url: "https://images-static.herokuapp.com/icons/png/styling.png",
+                                subtitle: "Create your own style.",
+                                buttons: [
+                                    {
+                                        type: "postback",
+                                        title: "Select",
+                                        payload: "STYLING"
+                                    }
+                                ]
                             },
-                            {
-                                "content_type": "text",
-                                "title": "Haircuts",
-                                "payload": "HAIRCUTS",
-                                "image_url": "https://images-static.herokuapp.com/icons/haircut.svg"
-                            },
-                            {
-                                "content_type": "text",
-                                "title": "Perms & Smoothing",
-                                "payload": "PERMS_SMOOTHING",
-                                "image_url": "https://images-static.herokuapp.com/icons/perms_smoothing.svg"
-                            },
-                            {
-                                "content_type": "text",
-                                "title": "Styling",
-                                "payload": "STYLING",
-                                "image_url": "https://images-static.herokuapp.com/icons/styling.svg"
-                            }
                         ]
                     }
                 ), [{
